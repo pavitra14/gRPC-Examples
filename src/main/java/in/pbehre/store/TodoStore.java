@@ -8,6 +8,9 @@ import in.pbehre.proto.GetTodoResponse;
 import in.pbehre.proto.TodoAddRequest;
 import in.pbehre.proto.TodoAddResponse;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
@@ -43,5 +46,18 @@ public class TodoStore {
         }
         logger.warning("No todo with given id exists: " + todo.toString());
         throw new TodoNotFoundException("No TODO with that id exists");
+    }
+
+    public Collection<GetTodoResponse> GetAll()
+    {
+        Collection<GetTodoResponse> all = new HashSet<GetTodoResponse>();
+        for(Map.Entry<Integer, String> entry: store.entrySet())
+        {
+            all.add(GetTodoResponse.newBuilder()
+            .setId(entry.getKey())
+            .setTodo(entry.getValue())
+            .build());
+        }
+        return all;
     }
 }

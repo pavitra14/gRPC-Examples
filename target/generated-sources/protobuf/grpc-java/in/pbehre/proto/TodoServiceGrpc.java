@@ -51,6 +51,42 @@ public final class TodoServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               in.pbehre.proto.GetTodoResponse.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<in.pbehre.proto.TodoAddRequest,
+      in.pbehre.proto.GenericStatus> METHOD_ADD_ALL =
+      io.grpc.MethodDescriptor.<in.pbehre.proto.TodoAddRequest, in.pbehre.proto.GenericStatus>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "in.pbehre.TodoService", "AddAll"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              in.pbehre.proto.TodoAddRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              in.pbehre.proto.GenericStatus.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      in.pbehre.proto.GetTodoResponse> METHOD_GET_ALL =
+      io.grpc.MethodDescriptor.<com.google.protobuf.Empty, in.pbehre.proto.GetTodoResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "in.pbehre.TodoService", "GetAll"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.google.protobuf.Empty.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              in.pbehre.proto.GetTodoResponse.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<in.pbehre.proto.TodoAddRequest,
+      in.pbehre.proto.TodoAddResponse> METHOD_SYNC_OP =
+      io.grpc.MethodDescriptor.<in.pbehre.proto.TodoAddRequest, in.pbehre.proto.TodoAddResponse>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+          .setFullMethodName(generateFullMethodName(
+              "in.pbehre.TodoService", "SyncOp"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              in.pbehre.proto.TodoAddRequest.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              in.pbehre.proto.TodoAddResponse.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -80,6 +116,9 @@ public final class TodoServiceGrpc {
   public static abstract class TodoServiceImplBase implements io.grpc.BindableService {
 
     /**
+     * <pre>
+     *  Unary Requests
+     * </pre>
      */
     public void addTodo(in.pbehre.proto.TodoAddRequest request,
         io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddResponse> responseObserver) {
@@ -91,6 +130,36 @@ public final class TodoServiceGrpc {
     public void getTodo(in.pbehre.proto.GetTodoRequest request,
         io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_GET_TODO, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Client Side Streaming - Unidirectional
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddRequest> addAll(
+        io.grpc.stub.StreamObserver<in.pbehre.proto.GenericStatus> responseObserver) {
+      return asyncUnimplementedStreamingCall(METHOD_ADD_ALL, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Server Side Streaming - Unidirectional
+     * </pre>
+     */
+    public void getAll(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_ALL, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Synchronised Streaming - Bidirectional
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddRequest> syncOp(
+        io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(METHOD_SYNC_OP, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -109,6 +178,27 @@ public final class TodoServiceGrpc {
                 in.pbehre.proto.GetTodoRequest,
                 in.pbehre.proto.GetTodoResponse>(
                   this, METHODID_GET_TODO)))
+          .addMethod(
+            METHOD_ADD_ALL,
+            asyncClientStreamingCall(
+              new MethodHandlers<
+                in.pbehre.proto.TodoAddRequest,
+                in.pbehre.proto.GenericStatus>(
+                  this, METHODID_ADD_ALL)))
+          .addMethod(
+            METHOD_GET_ALL,
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                in.pbehre.proto.GetTodoResponse>(
+                  this, METHODID_GET_ALL)))
+          .addMethod(
+            METHOD_SYNC_OP,
+            asyncBidiStreamingCall(
+              new MethodHandlers<
+                in.pbehre.proto.TodoAddRequest,
+                in.pbehre.proto.TodoAddResponse>(
+                  this, METHODID_SYNC_OP)))
           .build();
     }
   }
@@ -132,6 +222,9 @@ public final class TodoServiceGrpc {
     }
 
     /**
+     * <pre>
+     *  Unary Requests
+     * </pre>
      */
     public void addTodo(in.pbehre.proto.TodoAddRequest request,
         io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddResponse> responseObserver) {
@@ -145,6 +238,39 @@ public final class TodoServiceGrpc {
         io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_TODO, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Client Side Streaming - Unidirectional
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddRequest> addAll(
+        io.grpc.stub.StreamObserver<in.pbehre.proto.GenericStatus> responseObserver) {
+      return asyncClientStreamingCall(
+          getChannel().newCall(METHOD_ADD_ALL, getCallOptions()), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Server Side Streaming - Unidirectional
+     * </pre>
+     */
+    public void getAll(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(METHOD_GET_ALL, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *Synchronised Streaming - Bidirectional
+     * </pre>
+     */
+    public io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddRequest> syncOp(
+        io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddResponse> responseObserver) {
+      return asyncBidiStreamingCall(
+          getChannel().newCall(METHOD_SYNC_OP, getCallOptions()), responseObserver);
     }
   }
 
@@ -167,6 +293,9 @@ public final class TodoServiceGrpc {
     }
 
     /**
+     * <pre>
+     *  Unary Requests
+     * </pre>
      */
     public in.pbehre.proto.TodoAddResponse addTodo(in.pbehre.proto.TodoAddRequest request) {
       return blockingUnaryCall(
@@ -178,6 +307,17 @@ public final class TodoServiceGrpc {
     public in.pbehre.proto.GetTodoResponse getTodo(in.pbehre.proto.GetTodoRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_GET_TODO, getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *Server Side Streaming - Unidirectional
+     * </pre>
+     */
+    public java.util.Iterator<in.pbehre.proto.GetTodoResponse> getAll(
+        com.google.protobuf.Empty request) {
+      return blockingServerStreamingCall(
+          getChannel(), METHOD_GET_ALL, getCallOptions(), request);
     }
   }
 
@@ -200,6 +340,9 @@ public final class TodoServiceGrpc {
     }
 
     /**
+     * <pre>
+     *  Unary Requests
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<in.pbehre.proto.TodoAddResponse> addTodo(
         in.pbehre.proto.TodoAddRequest request) {
@@ -218,6 +361,9 @@ public final class TodoServiceGrpc {
 
   private static final int METHODID_ADD_TODO = 0;
   private static final int METHODID_GET_TODO = 1;
+  private static final int METHODID_GET_ALL = 2;
+  private static final int METHODID_ADD_ALL = 3;
+  private static final int METHODID_SYNC_OP = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -244,6 +390,10 @@ public final class TodoServiceGrpc {
           serviceImpl.getTodo((in.pbehre.proto.GetTodoRequest) request,
               (io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse>) responseObserver);
           break;
+        case METHODID_GET_ALL:
+          serviceImpl.getAll((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<in.pbehre.proto.GetTodoResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -254,6 +404,12 @@ public final class TodoServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_ADD_ALL:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.addAll(
+              (io.grpc.stub.StreamObserver<in.pbehre.proto.GenericStatus>) responseObserver);
+        case METHODID_SYNC_OP:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.syncOp(
+              (io.grpc.stub.StreamObserver<in.pbehre.proto.TodoAddResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -279,6 +435,9 @@ public final class TodoServiceGrpc {
               .setSchemaDescriptor(new TodoServiceDescriptorSupplier())
               .addMethod(METHOD_ADD_TODO)
               .addMethod(METHOD_GET_TODO)
+              .addMethod(METHOD_ADD_ALL)
+              .addMethod(METHOD_GET_ALL)
+              .addMethod(METHOD_SYNC_OP)
               .build();
         }
       }

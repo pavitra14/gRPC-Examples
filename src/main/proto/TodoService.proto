@@ -4,6 +4,8 @@ option java_outer_classname = "TodoRPCService";
 option java_multiple_files = true;
 option java_package = "in.pbehre.proto";
 
+import "google/protobuf/empty.proto";
+
 message TodoAddRequest {
   int32 id = 1;
   string todo = 2;
@@ -24,8 +26,23 @@ message GetTodoResponse {
   string todo = 2;
 }
 
-service TodoService {
-  rpc AddTodo(TodoAddRequest) returns(TodoAddResponse);
+message GenericStatus {
+  bool status = 1;
+  string message = 2; //Optional
+}
 
+
+service TodoService {
+  //  Unary Requests
+  rpc AddTodo(TodoAddRequest) returns(TodoAddResponse);
   rpc GetTodo(GetTodoRequest) returns(GetTodoResponse);
+
+  //Client Side Streaming - Unidirectional
+  rpc AddAll(stream TodoAddRequest) returns(GenericStatus);
+
+  //Server Side Streaming - Unidirectional
+  rpc GetAll(google.protobuf.Empty) returns (stream GetTodoResponse);
+
+  //Synchronised Streaming - Bidirectional
+  rpc SyncOp(stream TodoAddRequest) returns (stream TodoAddResponse);
 }

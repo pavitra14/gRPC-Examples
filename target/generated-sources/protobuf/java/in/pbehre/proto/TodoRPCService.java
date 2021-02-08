@@ -34,6 +34,11 @@ public final class TodoRPCService {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_in_pbehre_GetTodoResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_in_pbehre_GenericStatus_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_in_pbehre_GenericStatus_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -43,17 +48,23 @@ public final class TodoRPCService {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021TodoService.proto\022\tin.pbehre\"*\n\016TodoAd" +
-      "dRequest\022\n\n\002id\030\001 \001(\005\022\014\n\004todo\030\002 \001(\t\";\n\017To" +
-      "doAddResponse\022\n\n\002id\030\001 \001(\005\022\014\n\004todo\030\002 \001(\t\022" +
-      "\016\n\006status\030\003 \001(\010\"\034\n\016GetTodoRequest\022\n\n\002id\030" +
-      "\001 \001(\005\"+\n\017GetTodoResponse\022\n\n\002id\030\001 \001(\005\022\014\n\004" +
-      "todo\030\002 \001(\t2\221\001\n\013TodoService\022@\n\007AddTodo\022\031." +
-      "in.pbehre.TodoAddRequest\032\032.in.pbehre.Tod" +
-      "oAddResponse\022@\n\007GetTodo\022\031.in.pbehre.GetT" +
-      "odoRequest\032\032.in.pbehre.GetTodoResponseB#" +
-      "\n\017in.pbehre.protoB\016TodoRPCServiceP\001b\006pro",
-      "to3"
+      "\n\021TodoService.proto\022\tin.pbehre\032\033google/p" +
+      "rotobuf/empty.proto\"*\n\016TodoAddRequest\022\n\n" +
+      "\002id\030\001 \001(\005\022\014\n\004todo\030\002 \001(\t\";\n\017TodoAddRespon" +
+      "se\022\n\n\002id\030\001 \001(\005\022\014\n\004todo\030\002 \001(\t\022\016\n\006status\030\003" +
+      " \001(\010\"\034\n\016GetTodoRequest\022\n\n\002id\030\001 \001(\005\"+\n\017Ge" +
+      "tTodoResponse\022\n\n\002id\030\001 \001(\005\022\014\n\004todo\030\002 \001(\t\"" +
+      "0\n\rGenericStatus\022\016\n\006status\030\001 \001(\010\022\017\n\007mess" +
+      "age\030\002 \001(\t2\327\002\n\013TodoService\022@\n\007AddTodo\022\031.i" +
+      "n.pbehre.TodoAddRequest\032\032.in.pbehre.Todo" +
+      "AddResponse\022@\n\007GetTodo\022\031.in.pbehre.GetTo",
+      "doRequest\032\032.in.pbehre.GetTodoResponse\022?\n" +
+      "\006AddAll\022\031.in.pbehre.TodoAddRequest\032\030.in." +
+      "pbehre.GenericStatus(\001\022>\n\006GetAll\022\026.googl" +
+      "e.protobuf.Empty\032\032.in.pbehre.GetTodoResp" +
+      "onse0\001\022C\n\006SyncOp\022\031.in.pbehre.TodoAddRequ" +
+      "est\032\032.in.pbehre.TodoAddResponse(\0010\001B#\n\017i" +
+      "n.pbehre.protoB\016TodoRPCServiceP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -66,6 +77,7 @@ public final class TodoRPCService {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
         }, assigner);
     internal_static_in_pbehre_TodoAddRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -91,6 +103,13 @@ public final class TodoRPCService {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_in_pbehre_GetTodoResponse_descriptor,
         new java.lang.String[] { "Id", "Todo", });
+    internal_static_in_pbehre_GenericStatus_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_in_pbehre_GenericStatus_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_in_pbehre_GenericStatus_descriptor,
+        new java.lang.String[] { "Status", "Message", });
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
