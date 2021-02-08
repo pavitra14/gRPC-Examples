@@ -1,0 +1,31 @@
+syntax = "proto3";
+package in.pbehre;
+option java_outer_classname = "TodoRPCService";
+option java_multiple_files = true;
+option java_package = "in.pbehre.proto";
+
+message TodoAddRequest {
+  int32 id = 1;
+  string todo = 2;
+}
+
+message TodoAddResponse {
+  int32 id = 1;
+  string todo = 2;
+  bool status = 3;
+}
+
+message GetTodoRequest {
+  int32 id = 1;
+}
+
+message GetTodoResponse {
+  int32 id = 1;
+  string todo = 2;
+}
+
+service TodoService {
+  rpc AddTodo(TodoAddRequest) returns(TodoAddResponse);
+
+  rpc GetTodo(GetTodoRequest) returns(GetTodoResponse);
+}
